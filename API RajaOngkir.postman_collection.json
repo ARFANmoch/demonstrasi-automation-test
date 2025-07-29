@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "8e22c245-6a17-44e6-a3bb-292543224e8f",
+		"name": "API RajaOngkir",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26337929"
+	},
+	"item": [
+		{
+			"name": "GET Province",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "key",
+						"value": "V5AlDE5v4958f01d42052de0pGBMP1NV",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rajaongkir.komerce.id/api/v1/destination/city",
+					"protocol": "https",
+					"host": [
+						"rajaongkir",
+						"komerce",
+						"id"
+					],
+					"path": [
+						"api",
+						"v1",
+						"destination",
+						"city"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get City",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "key",
+						"value": "V5AlDE5v4958f01d42052de0pGBMP1NV",
+						"type": "text"
+					},
+					{
+						"key": "origin",
+						"value": "501",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rajaongkir.komerce.id/api/v1/destination/district/{city_id}",
+					"protocol": "https",
+					"host": [
+						"rajaongkir",
+						"komerce",
+						"id"
+					],
+					"path": [
+						"api",
+						"v1",
+						"destination",
+						"district",
+						"{city_id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET District",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "key",
+						"value": "68b51d5ab7d80c3704744b605e5ad16a",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rajaongkir.komerce.id/api/v1/destination/district/100",
+					"protocol": "https",
+					"host": [
+						"rajaongkir",
+						"komerce",
+						"id"
+					],
+					"path": [
+						"api",
+						"v1",
+						"destination",
+						"district",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Subdistrict",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "key",
+						"value": "V5AlDE5v4958f01d42052de0pGBMP1NV",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://rajaongkir.komerce.id/api/v1/destination/sub-district/5823",
+					"protocol": "https",
+					"host": [
+						"rajaongkir",
+						"komerce",
+						"id"
+					],
+					"path": [
+						"api",
+						"v1",
+						"destination",
+						"sub-district",
+						"5823"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cek Harga Ongkir",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.value).to.eql(100);\r",
+							"});\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"response_body_string\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "V5AlDE5v4958f01d42052de0pGBMP1NV",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "origin",
+							"value": "136",
+							"type": "text"
+						},
+						{
+							"key": "destination",
+							"value": "148",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "1700",
+							"type": "text"
+						},
+						{
+							"key": "courier",
+							"value": "tiki",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://rajaongkir.komerce.id/api/v1/calculate/district/domestic-cost",
+					"protocol": "https",
+					"host": [
+						"rajaongkir",
+						"komerce",
+						"id"
+					],
+					"path": [
+						"api",
+						"v1",
+						"calculate",
+						"district",
+						"domestic-cost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store Order",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "68b51d5ab7d80c3704744b605e5ad16a",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"order_date\": \"2025-07-29 11:00:00\",                        \r\n    \"brand_name\": \"FAN SKINCARE\",                                    \r\n    \"shipper_name\": \"Toko Official Arfan\",                    \r\n    \"shipper_phone\": \"6289507594091\",                           \r\n    \"shipper_destination_id\": 17545,                            \r\n    \"shipper_address\": \"JL Senayan City\",                  \r\n    \"shipper_email\": \"arfan@gmail.com\",                          \r\n    \"receiver_name\": \"Adit\",                                 \r\n    \"receiver_phone\": \"6281209876543\",                          \r\n    \"receiver_destination_id\": 17536,                           \r\n    \"receiver_address\": \"JL KEMERDEKAAN NO 1\",     \r\n    \"shipping\": \"JNE\",                                          \r\n    \"shipping_type\": \"Standar\",                                      \r\n    \"payment_method\": \"COD\",                                    \r\n    \"shipping_cost\": 68000,                                     \r\n    \"shipping_cashback\": 0,\r\n    \"service_fee\": 1000,\r\n    \"additional_cost\": 0,\r\n    \"grand_total\": 69000,\r\n    \"cod_value\": 69000,\r\n    \"insurance_value\": 0,\r\n    \"order_details\": [\r\n        {\r\n            \"product_name\": \"SUNSCREEN\",\r\n            \"product_variant_name\": \"WARDAH\",\r\n            \"product_price\": 35000,\r\n            \"product_width\": 1,\r\n            \"product_height\": 2,\r\n            \"product_weight\": 500,\r\n            \"product_length\": 20,\r\n            \"qty\": 1,\r\n            \"subtotal\": 35000\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-sandbox.collaborator.komerce.id/order/api/v1/orders/store",
+					"protocol": "https",
+					"host": [
+						"api-sandbox",
+						"collaborator",
+						"komerce",
+						"id"
+					],
+					"path": [
+						"order",
+						"api",
+						"v1",
+						"orders",
+						"store"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
